@@ -17,30 +17,19 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+        
+        VStack {
+            CalendarDayCellView()
+            Menu("Actions") {
+                Button("Duplicate", action: addItem)
+                Button("Rename", action: addItem)
+                Button("Delete…", action: addItem)
+                Menu("Copy") {
+                    Button("Copy", action: addItem)
+                    Button("Copy Formatted", action: addItem)
+                    Button("Copy Library Path", action: addItem)
                 }
             }
-            Text("Select an item")
         }
     }
 

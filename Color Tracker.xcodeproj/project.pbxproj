@@ -16,6 +16,8 @@
 		1C80F8D62952D40000FD8C66 /* Color_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8D52952D40000FD8C66 /* Color_TrackerTests.swift */; };
 		1C80F8E02952D40000FD8C66 /* Color_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8DF2952D40000FD8C66 /* Color_TrackerUITests.swift */; };
 		1C80F8E22952D40000FD8C66 /* Color_TrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8E12952D40000FD8C66 /* Color_TrackerUITestsLaunchTests.swift */; };
+		1C80F8EF2955244B00FD8C66 /* calendarDayCellVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8EE2955244B00FD8C66 /* calendarDayCellVIew.swift */; };
+		1C80F8F1295525FD00FD8C66 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8F0295525FD00FD8C66 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		1C80F8DB2952D40000FD8C66 /* Color TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Color TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C80F8DF2952D40000FD8C66 /* Color_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_TrackerUITests.swift; sourceTree = "<group>"; };
 		1C80F8E12952D40000FD8C66 /* Color_TrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_TrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1C80F8EE2955244B00FD8C66 /* calendarDayCellVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarDayCellVIew.swift; sourceTree = "<group>"; };
+		1C80F8F0295525FD00FD8C66 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				1C80F8C92952D40000FD8C66 /* Color_Tracker.entitlements */,
 				1C80F8C22952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld */,
 				1C80F8CA2952D40000FD8C66 /* Preview Content */,
+				1C80F8EE2955244B00FD8C66 /* calendarDayCellVIew.swift */,
+				1C80F8F0295525FD00FD8C66 /* CalendarView.swift */,
 			);
 			path = "Color Tracker";
 			sourceTree = "<group>";
@@ -267,6 +273,8 @@
 			files = (
 				1C80F8C42952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld in Sources */,
 				1C80F8BF2952D3FE00FD8C66 /* Color_TrackerApp.swift in Sources */,
+				1C80F8F1295525FD00FD8C66 /* CalendarView.swift in Sources */,
+				1C80F8EF2955244B00FD8C66 /* calendarDayCellVIew.swift in Sources */,
 				1C80F8C62952D3FE00FD8C66 /* ContentView.swift in Sources */,
 				1C80F8C12952D3FE00FD8C66 /* Persistence.swift in Sources */,
 			);
