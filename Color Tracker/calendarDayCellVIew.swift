@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ElegantCalendar
 
 enum daysOfWeekLong: String, CaseIterable, Identifiable  {
     case sunday = "Sun"
@@ -33,9 +34,9 @@ enum daysOfWeekShort: String, CaseIterable, Identifiable  {
 
 struct BoxCell: View {
     var day: String
-    
     private let boxColor = Color(#colorLiteral(red: 0.2235294133424759, green: 0.3607843220233917, blue: 0.41960784792900085, alpha: 1))
     private let textColor = Color(#colorLiteral(red: 0.9450980424880981, green: 0.9490196108818054, blue: 0.9647058844566345, alpha: 1))
+    
     @State private var toggledColor: Bool = false
     
     var body: some View {
@@ -67,19 +68,141 @@ struct BoxCell: View {
     }
 }
 
+func makeDays(calendar: Calendar, date: Date) -> [Date] {
+    guard let monthInterval = calendar.dateInterval(of: .month, for: date),
+          let monthFirstWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.start),
+          let monthLastWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.end - 1)
+    else {
+        return []
+    }
+
+    let dateInterval = DateInterval(start: monthFirstWeek.start, end: monthLastWeek.end)
+    return calendar.generateDays(for: dateInterval)
+}
+
+
+struct monthModel: Decodable {
+    let calendar: Calendar
+    var date: Date
+    var firstDay: Int
+    var lastDay: Int
+}
+
+public class calendarViewModel: ObservableObject {
+    var calendar: Calendar = .current
+    @Published var month: monthModel {
+        didSet {
+            print(month)
+        }
+    }
+    
+    init() {
+        month = monthModel(
+            calendar: calendar,
+            date: Date(),
+            firstDay: 1,
+            lastDay: 1
+        )
+        
+        month.firstDay = calendar.component(.weekday, from: month.date.startOfMonth())
+        month.lastDay = calendar.component(.day, from: month.date.endOfMonth())
+    }
+    
+    func firstLastDay() {
+        month.firstDay = calendar.component(.weekday, from: month.date.startOfMonth())
+        month.lastDay = calendar.component(.day, from: month.date.endOfMonth())
+    }
+    
+    func minus() {
+        guard let newDate = calendar.date(
+            byAdding: .month,
+            value: -1,
+            to: month.date
+        ) else {
+            return
+        }
+        month.date = newDate
+        firstLastDay()
+    }
+
+    func add() {
+        guard let newDate = calendar.date(
+            byAdding: .month,
+            value: +1,
+            to: month.date
+        ) else {
+            return
+        }
+        month.date = newDate
+        firstLastDay()
+    }
+    
+    func current() {
+        month.date = Date()
+        firstLastDay()
+        
+    }
+
+}
+
 
 
 struct CalendarDayCellView: View {
+    @ObservedObject var viewModel = calendarViewModel()
+    
+    
     private let columns: [GridItem] = Array(repeating: GridItem(.flexible(minimum: 20), spacing: 0), count: 7)
+    private let formatterMonth = DateFormatter()
+    private let formatterYear = DateFormatter()
+    
+    
+    
+    init() {
+        formatterMonth.dateFormat = "MMM"
+        formatterYear.dateFormat = "YYYY"
+    }
     
     var body: some View {
         VStack {
             VStack(spacing: 5) {
-                Text("Janurary 2020")
-                    .font(.title)
+                HStack {
+                    Button {
+                        viewModel.minus()
+                    } label: {
+                        Label(
+                            title: { Text("Previous") },
+                            icon: { Image(systemName: "chevron.left") }
+                        )
+                        .labelStyle(IconOnlyLabelStyle())
+                    }
+                    
+                    Button {
+                        viewModel.current()
+                    } label: {
+                        Label(
+                            title: { Text("Next") },
+                            icon: { Image(systemName: "square") }
+                        )
+                        .labelStyle(IconOnlyLabelStyle())
+                        .padding(.horizontal)
+                    }
+                    
+                    Button {
+                        viewModel.add()
+                    } label: {
+                        Label(
+                            title: { Text("Next") },
+                            icon: { Image(systemName: "chevron.right") }
+                        )
+                        .labelStyle(IconOnlyLabelStyle())
+                    }
+                    Spacer()
+                    Text(formatterYear.string(from: viewModel.month.date))
+                        .font(.title)
+                }
                 HStack(spacing: 0) {
-                    ForEach(daysOfWeekShort.allCases) { day in
-                        BoxCell(day: day.rawValue)
+                    ForEach(viewModel.calendar.veryShortWeekdaySymbols, id: \.self) { day in
+                        BoxCell(day: day)
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -90,12 +213,25 @@ struct CalendarDayCellView: View {
                     columns: columns,
                     spacing: 0
                 ) {
-                    Text("")
-                    ForEach(0..<30) { num in
-                        BoxCell(day: String(num))
+                    Section(
+                        header:
+                            HStack {
+                                Text(formatterMonth.string(from: viewModel.month.date))
+                                    .font(.title2)
+                                Spacer()
+                            }
+                    ) {
+                        ForEach(1..<viewModel.month.firstDay, id: \.self) { _ in
+                            Text("")
+                        }
+                        ForEach(1...viewModel.month.lastDay, id: \.self) { num in
+                            BoxCell(day: String(num))
+                        }
                     }
                 }
             }
+            Text("Day of week: \(viewModel.calendar.component(.day, from: viewModel.month.date))")
+            Text("First Day of Month: \(viewModel.month.firstDay)")
             Spacer()
         }
         .padding()

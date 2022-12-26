@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C406C5B2955624A00616757 /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 1C406C5A2955624A00616757 /* ElegantCalendar */; };
+		1C406C5D295564FF00616757 /* ElegantCalendar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C406C5C295564FF00616757 /* ElegantCalendar.xcassets */; };
+		1C406C6129557D8C00616757 /* Calendar+ColorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406C6029557D8C00616757 /* Calendar+ColorTracker.swift */; };
+		1C406C632955878900616757 /* CalendarViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406C622955878900616757 /* CalendarViewTest.swift */; };
 		1C80F8BF2952D3FE00FD8C66 /* Color_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8BE2952D3FE00FD8C66 /* Color_TrackerApp.swift */; };
 		1C80F8C12952D3FE00FD8C66 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8C02952D3FE00FD8C66 /* Persistence.swift */; };
 		1C80F8C42952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8C22952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld */; };
@@ -38,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C406C5C295564FF00616757 /* ElegantCalendar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ElegantCalendar.xcassets; path = "../../../../Library/Developer/Xcode/DerivedData/Color_Tracker-fyawvwcvaheyqkfwsvpxnitmaxbh/SourcePackages/checkouts/ElegantCalendar/ElegantCalendar.xcassets"; sourceTree = "<group>"; };
+		1C406C6029557D8C00616757 /* Calendar+ColorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+ColorTracker.swift"; sourceTree = "<group>"; };
+		1C406C622955878900616757 /* CalendarViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewTest.swift; sourceTree = "<group>"; };
 		1C80F8BB2952D3FE00FD8C66 /* Color Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C80F8BE2952D3FE00FD8C66 /* Color_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_TrackerApp.swift; sourceTree = "<group>"; };
 		1C80F8C02952D3FE00FD8C66 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -60,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C406C5B2955624A00616757 /* ElegantCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,9 +88,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C406C5E29557D6800616757 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1C406C5F29557D7100616757 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1C406C5F29557D7100616757 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1C406C6029557D8C00616757 /* Calendar+ColorTracker.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1C80F8B22952D3FE00FD8C66 = {
 			isa = PBXGroup;
 			children = (
+				1C406C5C295564FF00616757 /* ElegantCalendar.xcassets */,
 				1C80F8BD2952D3FE00FD8C66 /* Color Tracker */,
 				1C80F8D42952D40000FD8C66 /* Color TrackerTests */,
 				1C80F8DE2952D40000FD8C66 /* Color TrackerUITests */,
@@ -103,6 +128,7 @@
 		1C80F8BD2952D3FE00FD8C66 /* Color Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				1C406C5E29557D6800616757 /* Helpers */,
 				1C80F8BE2952D3FE00FD8C66 /* Color_TrackerApp.swift */,
 				1C80F8C02952D3FE00FD8C66 /* Persistence.swift */,
 				1C80F8C52952D3FE00FD8C66 /* ContentView.swift */,
@@ -112,6 +138,7 @@
 				1C80F8CA2952D40000FD8C66 /* Preview Content */,
 				1C80F8EE2955244B00FD8C66 /* calendarDayCellVIew.swift */,
 				1C80F8F0295525FD00FD8C66 /* CalendarView.swift */,
+				1C406C622955878900616757 /* CalendarViewTest.swift */,
 			);
 			path = "Color Tracker";
 			sourceTree = "<group>";
@@ -157,6 +184,9 @@
 			dependencies = (
 			);
 			name = "Color Tracker";
+			packageProductDependencies = (
+				1C406C5A2955624A00616757 /* ElegantCalendar */,
+			);
 			productName = "Color Tracker";
 			productReference = 1C80F8BB2952D3FE00FD8C66 /* Color Tracker.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +259,9 @@
 				Base,
 			);
 			mainGroup = 1C80F8B22952D3FE00FD8C66;
+			packageReferences = (
+				1C406C592955624A00616757 /* XCRemoteSwiftPackageReference "ElegantCalendar" */,
+			);
 			productRefGroup = 1C80F8BC2952D3FE00FD8C66 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -245,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C406C5D295564FF00616757 /* ElegantCalendar.xcassets in Resources */,
 				1C80F8CC2952D40000FD8C66 /* Preview Assets.xcassets in Resources */,
 				1C80F8C82952D40000FD8C66 /* Assets.xcassets in Resources */,
 			);
@@ -273,9 +307,11 @@
 			files = (
 				1C80F8C42952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld in Sources */,
 				1C80F8BF2952D3FE00FD8C66 /* Color_TrackerApp.swift in Sources */,
+				1C406C6129557D8C00616757 /* Calendar+ColorTracker.swift in Sources */,
 				1C80F8F1295525FD00FD8C66 /* CalendarView.swift in Sources */,
 				1C80F8EF2955244B00FD8C66 /* calendarDayCellVIew.swift in Sources */,
 				1C80F8C62952D3FE00FD8C66 /* ContentView.swift in Sources */,
+				1C406C632955878900616757 /* CalendarViewTest.swift in Sources */,
 				1C80F8C12952D3FE00FD8C66 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +664,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1C406C592955624A00616757 /* XCRemoteSwiftPackageReference "ElegantCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ThasianX/ElegantCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1C406C5A2955624A00616757 /* ElegantCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C406C592955624A00616757 /* XCRemoteSwiftPackageReference "ElegantCalendar" */;
+			productName = ElegantCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1C80F8C22952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld */ = {
