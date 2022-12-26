@@ -9,28 +9,6 @@ import Foundation
 import SwiftUI
 import ElegantCalendar
 
-enum daysOfWeekLong: String, CaseIterable, Identifiable  {
-    case sunday = "Sun"
-    case monday = "Mon"
-    case tuesday = "Tues"
-    case wednesday = "Wed"
-    case thursday = "Thur"
-    case friday = "Fri"
-    case saturday = "Sat"
-    var id: String { return self.rawValue }
-}
-
-enum daysOfWeekShort: String, CaseIterable, Identifiable  {
-    case sunday = "S"
-    case monday = "M"
-    case tuesday = "T"
-    case wednesday = "W"
-    case thursday = "Th"
-    case friday = "F"
-    case saturday = "ST"
-    
-    var id: String { return self.rawValue }
-}
 
 struct BoxCell: View {
     var day: String
@@ -68,20 +46,8 @@ struct BoxCell: View {
     }
 }
 
-func makeDays(calendar: Calendar, date: Date) -> [Date] {
-    guard let monthInterval = calendar.dateInterval(of: .month, for: date),
-          let monthFirstWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.start),
-          let monthLastWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.end - 1)
-    else {
-        return []
-    }
 
-    let dateInterval = DateInterval(start: monthFirstWeek.start, end: monthLastWeek.end)
-    return calendar.generateDays(for: dateInterval)
-}
-
-
-struct monthModel: Decodable {
+struct MonthModel: Decodable {
     let calendar: Calendar
     var date: Date
     var firstDay: Int
@@ -90,38 +56,34 @@ struct monthModel: Decodable {
 
 public class calendarViewModel: ObservableObject {
     var calendar: Calendar = .current
-    @Published var month: monthModel {
-        didSet {
-            print(month)
-        }
-    }
+    @Published var monthModel: MonthModel
     
     init() {
-        month = monthModel(
+        monthModel = MonthModel(
             calendar: calendar,
             date: Date(),
             firstDay: 1,
             lastDay: 1
         )
         
-        month.firstDay = calendar.component(.weekday, from: month.date.startOfMonth())
-        month.lastDay = calendar.component(.day, from: month.date.endOfMonth())
+        monthModel.firstDay = calendar.component(.weekday, from: monthModel.date.startOfMonth())
+        monthModel.lastDay = calendar.component(.day, from: monthModel.date.endOfMonth())
     }
     
     func firstLastDay() {
-        month.firstDay = calendar.component(.weekday, from: month.date.startOfMonth())
-        month.lastDay = calendar.component(.day, from: month.date.endOfMonth())
+        monthModel.firstDay = calendar.component(.weekday, from: monthModel.date.startOfMonth())
+        monthModel.lastDay = calendar.component(.day, from: monthModel.date.endOfMonth())
     }
     
     func minus() {
         guard let newDate = calendar.date(
             byAdding: .month,
             value: -1,
-            to: month.date
+            to: monthModel.date
         ) else {
             return
         }
-        month.date = newDate
+        monthModel.date = newDate
         firstLastDay()
     }
 
@@ -129,20 +91,61 @@ public class calendarViewModel: ObservableObject {
         guard let newDate = calendar.date(
             byAdding: .month,
             value: +1,
-            to: month.date
+            to: monthModel.date
         ) else {
             return
         }
-        month.date = newDate
+        monthModel.date = newDate
         firstLastDay()
     }
     
     func current() {
-        month.date = Date()
+        monthModel.date = Date()
         firstLastDay()
         
     }
 
+}
+
+struct monthView: View {
+    let columns: [GridItem]
+    let formatterMonth = DateFormatter()
+    
+    @ObservedObject var viewModel: calendarViewModel
+    
+    
+    init(columns: [GridItem], viewModel: calendarViewModel) {
+        self.columns = columns
+        self.viewModel = viewModel
+        formatterMonth.dateFormat = "MMM"
+    }
+    
+    var body: some View {
+        LazyVGrid(
+            columns: columns,
+            spacing: 0
+        ) {
+            Section(
+                header:
+                    HStack {
+                        Text(formatterMonth.string(from: viewModel.monthModel.date))
+                            .font(.title2)
+                        Spacer()
+                    }
+            ) {
+                ForEach(1..<viewModel.monthModel.firstDay, id: \.self) { _ in
+                    Text("")
+                }
+                ForEach(1...viewModel.monthModel.lastDay, id: \.self) { num in
+                    BoxCell(day: String(num))
+                }
+                
+                ForEach(1...7, id: \.self) { num in
+                    Text("").padding(.horizontal)
+                }
+            }
+        }
+    }
 }
 
 
@@ -152,13 +155,11 @@ struct CalendarDayCellView: View {
     
     
     private let columns: [GridItem] = Array(repeating: GridItem(.flexible(minimum: 20), spacing: 0), count: 7)
-    private let formatterMonth = DateFormatter()
     private let formatterYear = DateFormatter()
     
     
     
     init() {
-        formatterMonth.dateFormat = "MMM"
         formatterYear.dateFormat = "YYYY"
     }
     
@@ -197,7 +198,7 @@ struct CalendarDayCellView: View {
                         .labelStyle(IconOnlyLabelStyle())
                     }
                     Spacer()
-                    Text(formatterYear.string(from: viewModel.month.date))
+                    Text(formatterYear.string(from: viewModel.monthModel.date))
                         .font(.title)
                 }
                 HStack(spacing: 0) {
@@ -209,29 +210,10 @@ struct CalendarDayCellView: View {
             }
             
             ScrollView(showsIndicators: false) {
-                LazyVGrid(
-                    columns: columns,
-                    spacing: 0
-                ) {
-                    Section(
-                        header:
-                            HStack {
-                                Text(formatterMonth.string(from: viewModel.month.date))
-                                    .font(.title2)
-                                Spacer()
-                            }
-                    ) {
-                        ForEach(1..<viewModel.month.firstDay, id: \.self) { _ in
-                            Text("")
-                        }
-                        ForEach(1...viewModel.month.lastDay, id: \.self) { num in
-                            BoxCell(day: String(num))
-                        }
-                    }
-                }
+                monthView(columns: columns, viewModel: viewModel)
             }
-            Text("Day of week: \(viewModel.calendar.component(.day, from: viewModel.month.date))")
-            Text("First Day of Month: \(viewModel.month.firstDay)")
+            Text("Current Day of week: \(viewModel.calendar.component(.day, from: viewModel.monthModel.date))")
+            Text("First Day of Month: \(viewModel.monthModel.firstDay)")
             Spacer()
         }
         .padding()
