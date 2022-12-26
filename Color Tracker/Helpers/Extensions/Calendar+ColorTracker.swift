@@ -15,6 +15,16 @@ extension Date {
     func endOfMonth() -> Date {
         return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
     }
+    
+    func getDayOfMonth() -> String {
+        let components = Calendar.current.dateComponents([.day,.month,.year], from: self)
+        let day: Int = components.day!
+        return String(day)
+    }
+    
+    func generateDays() -> [Date] {
+        Calendar.current.generateDays(for: DateInterval(start: self.startOfMonth(), end: self.endOfMonth()))
+    }
 }
 
 extension Calendar {
@@ -46,6 +56,13 @@ extension Calendar {
         generateDates(
             for: dateInterval,
             matching: dateComponents([.hour, .minute, .second], from: dateInterval.start)
+        )
+    }
+    
+    func generateMonths(for dateInterval: DateInterval) -> [Date] {
+        generateDates(
+            for: dateInterval,
+            matching: dateComponents([.day, .hour, .minute, .second], from: dateInterval.start)
         )
     }
 }

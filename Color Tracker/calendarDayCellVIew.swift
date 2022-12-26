@@ -41,8 +41,40 @@ struct BoxCell: View {
                     .foregroundColor(toggledColor ? textColor : boxColor)
             }
         }
-        
+    }
+}
 
+struct DayCell: View {
+    var day: Date
+    private let boxColor = Color(#colorLiteral(red: 0.2235294133424759, green: 0.3607843220233917, blue: 0.41960784792900085, alpha: 1))
+    private let textColor = Color(#colorLiteral(red: 0.9450980424880981, green: 0.9490196108818054, blue: 0.9647058844566345, alpha: 1))
+    
+    @State private var toggledColor: Bool = false
+    
+    var body: some View {
+        Button {
+            print("testing")
+            toggledColor.toggle()
+        } label: {
+            ZStack {
+                Rectangle()
+                    .fill(toggledColor ? boxColor: textColor)
+                    .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                    .transaction { transaction in
+                        transaction.animation = nil
+                    }
+                    .shadow(
+                        color: Color(#colorLiteral(
+                            red: 0.007843137718737125,
+                            green: 0.06666667014360428,
+                            blue: 0.10588235408067703,
+                            alpha: 0.15)),
+                        radius:2, x:2, y:2)
+                Text(day.getDayOfMonth())
+                    .font(.body)
+                    .foregroundColor(toggledColor ? textColor : boxColor)
+            }
+        }
     }
 }
 
@@ -54,9 +86,42 @@ struct MonthModel: Decodable {
     var lastDay: Int
 }
 
+struct YearModel: Decodable {
+    var months = [Date]()
+    var calendar = Calendar(identifier: .iso8601)
+    
+    init() {
+        months = generationDates()
+    }
+    
+    func generationDates() -> [Date] {
+        let startDate = Date(timeIntervalSince1970: 60*60*24*365*50)
+        let endDate = Date(timeIntervalSince1970: 60*60*24*365*60)
+        let interval = DateInterval(start: startDate, end: endDate)
+        return calendar.generateMonths(for: interval)
+    }
+}
+
+public class YearViewModel: ObservableObject {
+    var calendar: Calendar = .current
+    @Published var yearModel: YearModel
+    
+    init() {
+        yearModel = YearModel()
+    }
+    
+    var months: [Date] {
+        return yearModel.months
+    }
+}
+
+
+
 public class calendarViewModel: ObservableObject {
     var calendar: Calendar = .current
     @Published var monthModel: MonthModel
+    @Published var yearModel: YearModel
+    var months = [Date]()
     
     init() {
         monthModel = MonthModel(
@@ -65,9 +130,16 @@ public class calendarViewModel: ObservableObject {
             firstDay: 1,
             lastDay: 1
         )
+        yearModel = YearModel()
         
         monthModel.firstDay = calendar.component(.weekday, from: monthModel.date.startOfMonth())
         monthModel.lastDay = calendar.component(.day, from: monthModel.date.endOfMonth())
+        
+        let startDate = Date(timeIntervalSince1970: 60*60*24*365*50)
+        let endDate = Date(timeIntervalSince1970: 60*60*24*365*60)
+        let interval = DateInterval(start: startDate, end: endDate)
+        
+        months = calendar.generateMonths(for: interval)
     }
     
     func firstLastDay() {
@@ -109,15 +181,16 @@ public class calendarViewModel: ObservableObject {
 
 struct monthView: View {
     let columns: [GridItem]
+    let month: Date
+    let firstDay: Int
     let formatterMonth = DateFormatter()
     
-    @ObservedObject var viewModel: calendarViewModel
     
-    
-    init(columns: [GridItem], viewModel: calendarViewModel) {
+    init(columns: [GridItem], month: Date) {
         self.columns = columns
-        self.viewModel = viewModel
-        formatterMonth.dateFormat = "MMM"
+        self.month = month
+        firstDay = Calendar.current.component(.weekday, from: month.startOfMonth())
+        formatterMonth.dateFormat = "MMM - YYYY"
     }
     
     var body: some View {
@@ -128,20 +201,16 @@ struct monthView: View {
             Section(
                 header:
                     HStack {
-                        Text(formatterMonth.string(from: viewModel.monthModel.date))
+                        Text(formatterMonth.string(from: month))
                             .font(.title2)
                         Spacer()
                     }
             ) {
-                ForEach(1..<viewModel.monthModel.firstDay, id: \.self) { _ in
+                ForEach(1..<firstDay, id: \.self) { _ in
                     Text("")
                 }
-                ForEach(1...viewModel.monthModel.lastDay, id: \.self) { num in
-                    BoxCell(day: String(num))
-                }
-                
-                ForEach(1...7, id: \.self) { num in
-                    Text("").padding(.horizontal)
+                ForEach(month.generateDays(), id: \.self) { day in
+                    DayCell(day: day)
                 }
             }
         }
@@ -151,7 +220,7 @@ struct monthView: View {
 
 
 struct CalendarDayCellView: View {
-    @ObservedObject var viewModel = calendarViewModel()
+    @ObservedObject var viewModel = YearViewModel()
     
     
     private let columns: [GridItem] = Array(repeating: GridItem(.flexible(minimum: 20), spacing: 0), count: 7)
@@ -167,38 +236,8 @@ struct CalendarDayCellView: View {
         VStack {
             VStack(spacing: 5) {
                 HStack {
-                    Button {
-                        viewModel.minus()
-                    } label: {
-                        Label(
-                            title: { Text("Previous") },
-                            icon: { Image(systemName: "chevron.left") }
-                        )
-                        .labelStyle(IconOnlyLabelStyle())
-                    }
-                    
-                    Button {
-                        viewModel.current()
-                    } label: {
-                        Label(
-                            title: { Text("Next") },
-                            icon: { Image(systemName: "square") }
-                        )
-                        .labelStyle(IconOnlyLabelStyle())
-                        .padding(.horizontal)
-                    }
-                    
-                    Button {
-                        viewModel.add()
-                    } label: {
-                        Label(
-                            title: { Text("Next") },
-                            icon: { Image(systemName: "chevron.right") }
-                        )
-                        .labelStyle(IconOnlyLabelStyle())
-                    }
                     Spacer()
-                    Text(formatterYear.string(from: viewModel.monthModel.date))
+                    Text(formatterYear.string(from: viewModel.months.first!))
                         .font(.title)
                 }
                 HStack(spacing: 0) {
@@ -210,10 +249,10 @@ struct CalendarDayCellView: View {
             }
             
             ScrollView(showsIndicators: false) {
-                monthView(columns: columns, viewModel: viewModel)
+                ForEach(viewModel.months, id: \.self) { month in
+                    monthView(columns: columns, month: month)
+                }
             }
-            Text("Current Day of week: \(viewModel.calendar.component(.day, from: viewModel.monthModel.date))")
-            Text("First Day of Month: \(viewModel.monthModel.firstDay)")
             Spacer()
         }
         .padding()
