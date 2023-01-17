@@ -27,6 +27,7 @@ struct YearModel: Decodable {
     
     init() {
         months = generationDates()
+        
     }
     
     func generationDates() -> [Date] {
