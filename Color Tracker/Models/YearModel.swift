@@ -30,8 +30,8 @@ struct YearModel: Decodable {
     }
     
     func generationDates() -> [Date] {
-        let startDate = Date(timeIntervalSince1970: 60*60*24*365*52).startOfMonth()
-        let endDate = Date(timeIntervalSince1970: 60*60*24*365*60).startOfMonth()
+        let startDate = Date.distantFuture.startOfMonth()
+        let endDate = Date.distantPast.startOfMonth()
         let interval = DateInterval(start: startDate, end: endDate)
         return calendar.generateMonths(for: interval)
     }
