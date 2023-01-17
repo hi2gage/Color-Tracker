@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3B66B4295AD01D0014844C /* DayHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66B3295AD01D0014844C /* DayHeaderCell.swift */; };
+		1C3B66BD295AD1880014844C /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66BC295AD1880014844C /* DayCell.swift */; };
+		1C3B66C1295AD25A0014844C /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66C0295AD25A0014844C /* MonthView.swift */; };
+		1C3B66C3295AD58B0014844C /* YearModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66C2295AD58B0014844C /* YearModel.swift */; };
+		1C3B66C5295AD5B80014844C /* YearViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66C4295AD5B80014844C /* YearViewModel.swift */; };
+		1C3B66C7295AD7B30014844C /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66C6295AD7B30014844C /* MonthViewModel.swift */; };
+		1C3B66C9295AD9490014844C /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66C8295AD9490014844C /* DayViewModel.swift */; };
+		1C3B66CC295AE1900014844C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66CB295AE1900014844C /* DataController.swift */; };
+		1C3B66CE295AE4D40014844C /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66CD295AE4D40014844C /* PersistenceController.swift */; };
+		1C3B66D0295AE65A0014844C /* Color+ColorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3B66CF295AE65A0014844C /* Color+ColorTracker.swift */; };
 		1C406C5B2955624A00616757 /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 1C406C5A2955624A00616757 /* ElegantCalendar */; };
 		1C406C5D295564FF00616757 /* ElegantCalendar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C406C5C295564FF00616757 /* ElegantCalendar.xcassets */; };
 		1C406C6129557D8C00616757 /* Calendar+ColorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406C6029557D8C00616757 /* Calendar+ColorTracker.swift */; };
 		1C406C632955878900616757 /* CalendarViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C406C622955878900616757 /* CalendarViewTest.swift */; };
 		1C80F8BF2952D3FE00FD8C66 /* Color_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8BE2952D3FE00FD8C66 /* Color_TrackerApp.swift */; };
-		1C80F8C12952D3FE00FD8C66 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8C02952D3FE00FD8C66 /* Persistence.swift */; };
 		1C80F8C42952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8C22952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld */; };
 		1C80F8C62952D3FE00FD8C66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8C52952D3FE00FD8C66 /* ContentView.swift */; };
 		1C80F8C82952D40000FD8C66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C80F8C72952D40000FD8C66 /* Assets.xcassets */; };
@@ -20,8 +29,8 @@
 		1C80F8D62952D40000FD8C66 /* Color_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8D52952D40000FD8C66 /* Color_TrackerTests.swift */; };
 		1C80F8E02952D40000FD8C66 /* Color_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8DF2952D40000FD8C66 /* Color_TrackerUITests.swift */; };
 		1C80F8E22952D40000FD8C66 /* Color_TrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8E12952D40000FD8C66 /* Color_TrackerUITestsLaunchTests.swift */; };
-		1C80F8EF2955244B00FD8C66 /* calendarDayCellVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8EE2955244B00FD8C66 /* calendarDayCellVIew.swift */; };
 		1C80F8F1295525FD00FD8C66 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C80F8F0295525FD00FD8C66 /* CalendarView.swift */; };
+		1CAE643A295BBFDB007491D1 /* Date+ColorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAE6439295BBFDB007491D1 /* Date+ColorTracker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,12 +51,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C3B66AD295ACD4E0014844C /* Color-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Color-Tracker-Info.plist"; sourceTree = SOURCE_ROOT; };
+		1C3B66B3295AD01D0014844C /* DayHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeaderCell.swift; sourceTree = "<group>"; };
+		1C3B66BC295AD1880014844C /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		1C3B66C0295AD25A0014844C /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		1C3B66C2295AD58B0014844C /* YearModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearModel.swift; sourceTree = "<group>"; };
+		1C3B66C4295AD5B80014844C /* YearViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearViewModel.swift; sourceTree = "<group>"; };
+		1C3B66C6295AD7B30014844C /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
+		1C3B66C8295AD9490014844C /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
+		1C3B66CB295AE1900014844C /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		1C3B66CD295AE4D40014844C /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		1C3B66CF295AE65A0014844C /* Color+ColorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ColorTracker.swift"; sourceTree = "<group>"; };
 		1C406C5C295564FF00616757 /* ElegantCalendar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ElegantCalendar.xcassets; path = "../../../../Library/Developer/Xcode/DerivedData/Color_Tracker-fyawvwcvaheyqkfwsvpxnitmaxbh/SourcePackages/checkouts/ElegantCalendar/ElegantCalendar.xcassets"; sourceTree = "<group>"; };
 		1C406C6029557D8C00616757 /* Calendar+ColorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+ColorTracker.swift"; sourceTree = "<group>"; };
 		1C406C622955878900616757 /* CalendarViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewTest.swift; sourceTree = "<group>"; };
 		1C80F8BB2952D3FE00FD8C66 /* Color Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C80F8BE2952D3FE00FD8C66 /* Color_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_TrackerApp.swift; sourceTree = "<group>"; };
-		1C80F8C02952D3FE00FD8C66 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1C80F8C32952D3FE00FD8C66 /* Color_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Color_Tracker.xcdatamodel; sourceTree = "<group>"; };
 		1C80F8C52952D3FE00FD8C66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1C80F8C72952D40000FD8C66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,8 +77,9 @@
 		1C80F8DB2952D40000FD8C66 /* Color TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Color TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C80F8DF2952D40000FD8C66 /* Color_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_TrackerUITests.swift; sourceTree = "<group>"; };
 		1C80F8E12952D40000FD8C66 /* Color_TrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_TrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1C80F8EE2955244B00FD8C66 /* calendarDayCellVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarDayCellVIew.swift; sourceTree = "<group>"; };
 		1C80F8F0295525FD00FD8C66 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		1CAE6439295BBFDB007491D1 /* Date+ColorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ColorTracker.swift"; sourceTree = "<group>"; };
+		1CAE643B295BC407007491D1 /* Color_Tracker 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Color_Tracker 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +108,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C3B66B8295AD1020014844C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1C3B66C2295AD58B0014844C /* YearModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1C3B66B9295AD1020014844C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1C3B66C4295AD5B80014844C /* YearViewModel.swift */,
+				1C3B66C6295AD7B30014844C /* MonthViewModel.swift */,
+				1C3B66C8295AD9490014844C /* DayViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1C3B66BA295AD1020014844C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1C3B66B3295AD01D0014844C /* DayHeaderCell.swift */,
+				1C3B66BC295AD1880014844C /* DayCell.swift */,
+				1C3B66C0295AD25A0014844C /* MonthView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1C3B66CA295AE1520014844C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1C3B66CB295AE1900014844C /* DataController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		1C406C5E29557D6800616757 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				1C406C6029557D8C00616757 /* Calendar+ColorTracker.swift */,
+				1C3B66CF295AE65A0014844C /* Color+ColorTracker.swift */,
+				1CAE6439295BBFDB007491D1 /* Date+ColorTracker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -128,15 +186,19 @@
 		1C80F8BD2952D3FE00FD8C66 /* Color Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				1C3B66CD295AE4D40014844C /* PersistenceController.swift */,
+				1C3B66CA295AE1520014844C /* Controllers */,
+				1C3B66B8295AD1020014844C /* Models */,
+				1C3B66B9295AD1020014844C /* ViewModels */,
+				1C3B66BA295AD1020014844C /* Views */,
+				1C3B66AD295ACD4E0014844C /* Color-Tracker-Info.plist */,
 				1C406C5E29557D6800616757 /* Helpers */,
 				1C80F8BE2952D3FE00FD8C66 /* Color_TrackerApp.swift */,
-				1C80F8C02952D3FE00FD8C66 /* Persistence.swift */,
 				1C80F8C52952D3FE00FD8C66 /* ContentView.swift */,
 				1C80F8C72952D40000FD8C66 /* Assets.xcassets */,
 				1C80F8C92952D40000FD8C66 /* Color_Tracker.entitlements */,
 				1C80F8C22952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld */,
 				1C80F8CA2952D40000FD8C66 /* Preview Content */,
-				1C80F8EE2955244B00FD8C66 /* calendarDayCellVIew.swift */,
 				1C80F8F0295525FD00FD8C66 /* CalendarView.swift */,
 				1C406C622955878900616757 /* CalendarViewTest.swift */,
 			);
@@ -305,14 +367,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C3B66C3295AD58B0014844C /* YearModel.swift in Sources */,
+				1C3B66C1295AD25A0014844C /* MonthView.swift in Sources */,
+				1C3B66C9295AD9490014844C /* DayViewModel.swift in Sources */,
+				1C3B66C5295AD5B80014844C /* YearViewModel.swift in Sources */,
 				1C80F8C42952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld in Sources */,
 				1C80F8BF2952D3FE00FD8C66 /* Color_TrackerApp.swift in Sources */,
+				1C3B66BD295AD1880014844C /* DayCell.swift in Sources */,
+				1C3B66CC295AE1900014844C /* DataController.swift in Sources */,
+				1C3B66D0295AE65A0014844C /* Color+ColorTracker.swift in Sources */,
 				1C406C6129557D8C00616757 /* Calendar+ColorTracker.swift in Sources */,
+				1C3B66CE295AE4D40014844C /* PersistenceController.swift in Sources */,
 				1C80F8F1295525FD00FD8C66 /* CalendarView.swift in Sources */,
-				1C80F8EF2955244B00FD8C66 /* calendarDayCellVIew.swift in Sources */,
+				1CAE643A295BBFDB007491D1 /* Date+ColorTracker.swift in Sources */,
+				1C3B66C7295AD7B30014844C /* MonthViewModel.swift in Sources */,
+				1C3B66B4295AD01D0014844C /* DayHeaderCell.swift in Sources */,
 				1C80F8C62952D3FE00FD8C66 /* ContentView.swift in Sources */,
 				1C406C632955878900616757 /* CalendarViewTest.swift in Sources */,
-				1C80F8C12952D3FE00FD8C66 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -451,6 +523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -471,8 +544,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Color-Tracker-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = NO;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
@@ -481,7 +555,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -490,6 +564,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -509,6 +585,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Color-Tracker-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -519,7 +596,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -528,6 +605,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -688,6 +767,7 @@
 		1C80F8C22952D3FE00FD8C66 /* Color_Tracker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1CAE643B295BC407007491D1 /* Color_Tracker 2.xcdatamodel */,
 				1C80F8C32952D3FE00FD8C66 /* Color_Tracker.xcdatamodel */,
 			);
 			currentVersion = 1C80F8C32952D3FE00FD8C66 /* Color_Tracker.xcdatamodel */;

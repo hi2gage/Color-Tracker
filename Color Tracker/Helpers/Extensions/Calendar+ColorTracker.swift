@@ -16,10 +16,10 @@ extension Date {
         return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
     }
     
-    func getDayOfMonth() -> String {
+    func getDayOfMonth() -> Int {
         let components = Calendar.current.dateComponents([.day,.month,.year], from: self)
         let day: Int = components.day!
-        return String(day)
+        return day
     }
     
     func generateDays() -> [Date] {
@@ -35,7 +35,7 @@ extension Calendar {
         var dates = [dateInterval.start]
 
         enumerateDates(
-            startingAfter: dateInterval.start,
+            startingAfter: dateInterval.start.startOfMonth(),
             matching: components,
             matchingPolicy: .nextTime
         ) { date, _, stop in
@@ -62,7 +62,7 @@ extension Calendar {
     func generateMonths(for dateInterval: DateInterval) -> [Date] {
         generateDates(
             for: dateInterval,
-            matching: dateComponents([.day, .hour, .minute, .second], from: dateInterval.start)
+            matching: dateComponents([.day], from: dateInterval.start)
         )
     }
 }
